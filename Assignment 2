@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    double basic_salary, tax, net_salary;
+    double sha_deduction_rate = 0.0275;
+    double house_levy_rate = 0.015;
+    double fixed_credit_allowance = 3000;
+
+    // Input basic salary
+    cout << "Enter the basic salary: ";
+    cin >> basic_salary;
+
+    // Calculate tax based on salary ranges
+    if (basic_salary < 10000) {
+        tax = 0; // No tax for salary below 10,000
+    } else if (basic_salary >= 10000 && basic_salary < 30000) {
+        tax = (basic_salary - 10000) * 0.12;
+    } else if (basic_salary >= 30000 && basic_salary < 50000) {
+        tax = 2400 + (basic_salary - 30000) * 0.15; // 12% on first 20,000
+    } else if (basic_salary >= 50000 && basic_salary < 100000) {
+        tax = 2400 + 3000 + (basic_salary - 50000) * 0.20; // 12% + 15%
+    } else {
+        tax = 2400 + 3000 + 10000 + (basic_salary - 100000) * 0.30; // 12% + 15% + 20%
+    }
+
+    // Calculate deductions
+    double sha_deduction = basic_salary * sha_deduction_rate;
+    double house_levy = basic_salary *

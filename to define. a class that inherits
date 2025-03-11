@@ -1,0 +1,68 @@
+#include <iostream>
+#include <string>
+
+class AccountHolder {
+protected:
+    std::string name; // Protected data member to represent the account holder's name
+
+public:
+    // Function to set the name
+    void setName(const std::string& name) {
+        this->name = name;
+    }
+
+    // Function to get the name
+    std::string getName() const {
+        return name;
+    }
+};
+
+class BankAccount : public AccountHolder {
+private:
+    int accountNumber; // Private data member for account number
+    double balance;    // Private data member for balance
+
+public:
+    // Constructor to initialize name, accountNumber, and balance
+    BankAccount(const std::string& name, int accountNumber, double balance) {
+        setName(name);         // Call base class function to set name
+        this->accountNumber = accountNumber;
+        this->balance = balance;
+    }
+
+    // Function to get the account number
+    int getAccountNumber() const {
+        return accountNumber;
+    }
+
+    // Function to get the balance
+    double getBalance() const {
+        return balance;
+    }
+};
+
+class SavingsAccount : public BankAccount {
+private:
+    double interestRate; // Private data member for interest rate
+
+public:
+    // Constructor to initialize name, accountNumber, balance, and interestRate
+    SavingsAccount(const std::string& name, int accountNumber, double balance, double interestRate)
+        : BankAccount(name, accountNumber, balance) { // Call the base class constructor
+        this->interestRate = interestRate;
+    }
+
+    // Function to get the interest rate
+    double getInterestRate() const {
+        return interestRate;
+    }
+};
+
+int main() {
+    SavingsAccount savingsAccount("John Doe", 123456, 1000.50, 1.5);
+    std::cout << "Account Holder: " << savingsAccount.getName() << std::endl;
+    std::cout << "Account Number: " << savingsAccount.getAccountNumber() << std::endl;
+    std::cout << "Account Balance: " << savingsAccount.getBalance() << std::endl;
+    std::cout << "Interest Rate: " << savingsAccount.getInterestRate() << "%" << std::endl;
+    return 0;
+}

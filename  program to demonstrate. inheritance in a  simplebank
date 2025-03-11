@@ -1,0 +1,27 @@
+
+	#include <iostream>
+#include <string>
+
+class AccountHolder {
+protected:
+    std::string name; // Protected data member to represent the account holder's name
+
+public:
+    // Function to set the name
+    void setName(const std::string& name) {
+        this->name = name;
+    }
+
+    // Function to get the name
+    std::string getName() const {
+        return name;
+    }
+};
+
+int main() {
+    AccountHolder account;
+    account.setName("John Doe");
+    std::cout << "Account Holder Name: " << account.getName() << std::endl;
+    return 0;
+}
+
